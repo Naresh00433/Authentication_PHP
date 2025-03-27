@@ -3,16 +3,16 @@
 $showAlert=false;
 $showError=false;
 $fill_password=false;
-$fill_username=false;
+$fill_email=false;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    include 'partials/_dbconnect.php';
-    $username = $_POST['username'];
+    include '_dbconnect.php';
+    $email = $_POST['email'];
     $password = $_POST['password'];
     $cpassword = $_POST['cpassword'];
 
     $exists=false;
     if(($password == $cpassword) && $exists == false){
-      $sql = "INSERT INTO `users` ( `username`, `password`, `date`) VALUES ('$username', '$password', current_timestamp())";
+      $sql = "INSERT INTO `users` ( `email`, `password`, `date`) VALUES ('$email', '$password', current_timestamp())";
       $result = mysqli_query($conn, $sql);
   
       if($result){
@@ -23,9 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $fill_password = "please enter the password";
     }
 
-    if($username==null){
+    if($email==null){
         $sql=null;
-        $fill_username = "please enter the username";
+        $email = "please enter the email";
     }
     }
     else {
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <!-- <h1>Login_Page</h1> -->
-    <?php require 'partials/_nav.php'?>
+    <!-- <?php require 'partials/_nav.php'?> -->
 
     <?php
     if($showAlert){
@@ -71,39 +71,56 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>';
     }
 
-    if($fill_username){
+    if($fill_email){
         echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Error!</strong> '. $fill_username .'
+        <strong>Error!</strong> '. $fill_email .'
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>';
     }
     ?>
 
 
-    <h1 class="text-center mt-5 mb-5">Signup To Our Website</h1>
 
-    <div class="container">
-        <form class="row g-3" action="/login_page/signup.php" method="post">
-            <div class="col-12">
-                <label for="username" class="form-label">username</label>
-                <input type="text" class="form-control" id="username" name="username">
-            </div>
-            <div class="col-12">
-                <label for="password" class="form-label">password</label>
-                <input type="password" class="form-control" id="password" name="password">
-            </div>
-            <div class="col-12">
-                <label for="cpassword" class="form-label">confirm password</label>
-                <input type="password" class="form-control" id="cpassword" name="cpassword">
-            </div> 
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Sign in</button>
-            </div>
-        </form>
+<div class="container ">
+
+<div class="row bg-white border border-gray-300 shadow-lg rounded-3 my-4">
+    <div class="col-sm-12 col-md-6 col-lg-6 my-4">
+        <img src="ai.jpg" class="img-fluid rounded-3" style="height:600px; width:650px; margin-left:15px;" alt="login">
     </div>
 
 
-    
+    <div class="col-sm-12 col-md-6 col-lg-6 p-5 ">
+    <h3 class="text-primary">Signup To Our Website</h3>
+
+    <h5 class="mt-3">HELLO AGAIN! 👋</h5>
+    <p class="w-75">Enter your credentials and step into a world of secure data management.</p>
+
+    <form class="row g-3" action="/login_page/signup.php" method="post">
+        <div class="col-8">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" >
+        </div>
+        <div class="col-8">
+            <label for="password" class="form-label">password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="col-8">
+                <label for="cpassword" class="form-label">confirm password</label>
+                <input type="password" class="form-control" id="cpassword" name="cpassword" required>
+            </div> 
+        <div class="col-8">
+            <button type="submit" class="btn btn-primary w-100 my-1 rounded-3 p-2">Sign in</button>
+        </div>
+        <div class="separator"><span>OR</span></div>
+        <h6>If already have an account,<a class="text-decoration-none" href="/login_page/login.php"> Login</a></h6>
+    </form>
+
+    </div>
+
+</div>
+
+
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

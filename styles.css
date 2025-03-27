@@ -1,0 +1,42 @@
+/* .main-title{
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    letter-spacing: 2px;
+
+} */
+
+.box button {
+    float: right;
+    margin-bottom: 10px;
+}
+
+
+.sidebar-menu ul{
+    list-style: none;
+
+}
+
+
+.sidebar-menu ul li{
+    margin-bottom:20px;
+}
+
+.sidebar-menu ul li a{
+    color: black;
+}
+
+.sidebar-menu ul li i{
+    color: rgb(1, 145, 177);
+}
+
+.cards {
+    display: flex;
+    gap:30px;
+    margin-top:20px;
+}
+
+#reset-btn {
+    border: none;
+    color: red;
+}
